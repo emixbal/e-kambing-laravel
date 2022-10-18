@@ -41,3 +41,7 @@ Route::group(['prefix' => 'units', 'middleware' => ['isAdmin']], function(){
 Route::group(['prefix' => 'dev', 'middleware' => ['isAdmin']], function(){
     Route::get('/{take}', [App\Http\Controllers\DeveloperController::class, 'fetchAnggotas'])->name('fetchAnggotas');
 });
+
+Route::group(['prefix' => 'kambings'], function(){
+    Route::get('/', [App\Http\Controllers\DeveloperController::class, 'fetchAnggotas'])->name('fetchAnggotas');
+});
