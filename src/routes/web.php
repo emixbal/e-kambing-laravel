@@ -29,19 +29,12 @@ Route::prefix('users')->group(function () {
     Route::post('/{id}/update', [App\Http\Controllers\UserController::class, 'update'])->name('users_update')->middleware('isSuperadmin');
 });
 
-Route::group(['prefix' => 'units', 'middleware' => ['isAdmin']], function(){
-    Route::get('/', [App\Http\Controllers\UnitController::class, 'index'])->name('units');
-    Route::get('/new', [App\Http\Controllers\UnitController::class, 'create'])->name('units_create');
-    Route::post('/new', [App\Http\Controllers\UnitController::class, 'store'])->name('units_store');
-
-    Route::get('/{id}/edit', [App\Http\Controllers\UnitController::class, 'edit'])->name('units_edit');
-    Route::post('/{id}/edit', [App\Http\Controllers\UnitController::class, 'update'])->name('units_update');
-});
-
 Route::group(['prefix' => 'dev', 'middleware' => ['isAdmin']], function(){
     Route::get('/{take}', [App\Http\Controllers\DeveloperController::class, 'fetchAnggotas'])->name('fetchAnggotas');
 });
 
 Route::group(['prefix' => 'kambings'], function(){
-    Route::get('/', [App\Http\Controllers\DeveloperController::class, 'fetchAnggotas'])->name('fetchAnggotas');
+    Route::get('/', [App\Http\Controllers\KambingController::class, 'index'])->name('kambingIndex');
+    Route::get('/new', [App\Http\Controllers\KambingController::class, 'index'])->name('kambingDetail');
+    Route::get('/{id}', [App\Http\Controllers\KambingController::class, 'detail'])->name('kambingDetail');
 });

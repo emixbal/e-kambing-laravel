@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'E-Voucher Koprasi Warah',
+    'title' => 'Kambing-App',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -45,7 +45,7 @@ return [
     |
     */
 
-    'logo' => '<b>E-Voucher</b>',
+    'logo' => '<b>KambingApp</b>',
     'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
@@ -244,54 +244,19 @@ return [
             'text' => 'search',
         ],
         [
-            'text'    => 'Anggota',
+            'text'    => 'Kambing',
             'icon'    => 'fas fa-fw fa-address-book',
             'submenu' => [
                 [
-                    'text' => 'List Anggota',
-                    'url'  => 'anggota',
+                    'text' => 'List Kambing',
+                    'url'  => 'kambings',
                 ],
                 [
-                    'text' => 'Tambah Anggota',
-                    'url'  => 'anggota/new',
-                ],
-                [
-                    'text' => 'Download CSV',
-                    'url'  => 'anggota/csv',
+                    'text' => 'Tambah Kambing',
+                    'url'  => 'kambings/new',
                 ],
             ],
         ],
-
-        [
-            'text'    => 'Voucher',
-            'icon'    => 'fas fa-fw fa-bars',
-            'submenu' => [
-                [
-                    'text' => 'List Top Up',
-                    'url'  => 'voucher/topup-listed',
-                ],
-                [
-                    'text' => 'List File Top Up',
-                    'url'  => 'voucher/topup-files',
-                ],
-            ],
-        ],
-
-        [
-            'text'    => 'POS',
-            'icon'    => 'fas fa-fw fa-shopping-bag',
-            'submenu' => [
-                [
-                    'text' => 'New',
-                    'url'  => 'pos',
-                ],
-                [
-                    'text' => 'List POS Transaksi',
-                    'url'  => 'pos/transactions',
-                ],
-            ],
-        ],
-
         [
             'text'        => 'User',
             'icon'        => 'fas fa-users fa-file',
@@ -305,55 +270,6 @@ return [
                     'url'  => 'users/new',
                 ],
             ],
-        ],
-
-        [
-            'text'        => 'Unit',
-            'icon'        => 'fas fa-id-card',
-            'submenu' => [
-                [
-                    'text' => 'List',
-                    'url'  => 'units',
-                ],
-                [
-                    'text' => 'Tambah Data',
-                    'url'  => 'units/new',
-                ],
-            ],
-        ],
-
-        [
-            'text'        => 'Sumber Gaji',
-            'icon'        => 'fas fa-fw fa-file',
-            'submenu' => [
-                [
-                    'text' => 'List',
-                    'url'  => 'sumber_gaji',
-                ],
-                [
-                    'text' => 'Tambah Data',
-                    'url'  => 'sumber_gaji/new',
-                ],
-            ],
-        ],
-
-        ['header' => 'account_settings'],
-        [
-            'text' => 'profile',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-user',
-        ],
-        [
-            'text' => 'change_password',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
-        ],
-        
-        ['header' => 'labels'],
-        [
-            'text'       => 'important',
-            'icon_color' => 'red',
-            'url'        => '#',
         ],
     ],
 
