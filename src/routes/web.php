@@ -38,4 +38,5 @@ Route::group(['prefix' => 'kambings'], function(){
     Route::get('/search', [App\Http\Controllers\KambingController::class, 'searchForm'])->name('kambingDetail');
     Route::get('/new', [App\Http\Controllers\KambingController::class, 'index'])->name('kambingDetail');
     Route::get('/{id}', [App\Http\Controllers\KambingController::class, 'detail'])->name('kambingDetail');
+    Route::get('/{id}/check', [App\Http\Controllers\KambingController::class, 'check'])->name('kambingCheck');
 });

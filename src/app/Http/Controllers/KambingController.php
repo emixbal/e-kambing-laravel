@@ -20,7 +20,9 @@ class KambingController extends Controller
 
     public function detail($id)
     {
-        $kambing = Kambing::find($id);
+        $kambing = Kambing::where('number', $id)
+        ->orWhere('id', $id)
+        ->first();
 
         $pass = [
             "kambing"=>$kambing,
@@ -37,4 +39,25 @@ class KambingController extends Controller
     {
         return view('kambing/search_form');
     }
+    
+    public function check($id)
+    {
+        $kambing = Kambing::where('number', $id)
+        ->orWhere('id', $id)
+        ->first();
+
+        if(!$kambing){
+            return response()->json([
+                "message"=>"not found",
+                "isValid"=>FALSE,
+            ]);
+        }
+        
+        return response()->json([
+            "message"=>"ok",
+            "isValid"=>TRUE,
+        ]);
+    }
+
+    
 }
