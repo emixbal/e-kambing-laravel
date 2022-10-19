@@ -18,7 +18,7 @@ $(document).ready(function () {
                     alert("Tidak ditemukan")
                     return
                 }
-                window.location.replace(`${base_url}/kambings/${kambingNumber}`);
+                window.location.replace(`${base_url}/kambings/${kambingNumber}/public`);
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 console.log(textStatus, errorThrown);

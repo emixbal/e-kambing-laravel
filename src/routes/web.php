@@ -34,9 +34,13 @@ Route::group(['prefix' => 'dev', 'middleware' => ['isAdmin']], function(){
 });
 
 Route::group(['prefix' => 'kambings'], function(){
-    Route::get('/', [App\Http\Controllers\KambingController::class, 'index'])->name('kambingIndex');
-    Route::get('/search', [App\Http\Controllers\KambingController::class, 'searchForm'])->name('kambingDetail');
-    Route::get('/new', [App\Http\Controllers\KambingController::class, 'index'])->name('kambingDetail');
-    Route::get('/{id}', [App\Http\Controllers\KambingController::class, 'detail'])->name('kambingDetail');
+    Route::get('/search', [App\Http\Controllers\KambingController::class, 'searchForm'])->name('kambingSearchForm');
+    Route::get('/{id}/public', [App\Http\Controllers\KambingController::class, 'detailPublic'])->name('kambingDetailPublic');
     Route::get('/{id}/check', [App\Http\Controllers\KambingController::class, 'check'])->name('kambingCheck');
+    
+    Route::group(['middleware' => ['isAdmin']], function(){
+        Route::get('/', [App\Http\Controllers\KambingController::class, 'index'])->name('kambingIndex');
+        Route::get('/new', [App\Http\Controllers\KambingController::class, 'index'])->name('kambingNew');
+        Route::get('/{id}', [App\Http\Controllers\KambingController::class, 'detail'])->name('kambingDetail');
+    });
 });

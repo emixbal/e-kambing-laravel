@@ -36,6 +36,27 @@ class KambingController extends Controller
         
         return view('kambing/detail', $pass);
     }
+    
+    public function detailPublic($id)
+    {
+        $kambing = Kambing::where('number', $id)
+        ->orWhere('id', $id)
+        ->with('bloodType')
+        ->with('kambingType')
+        ->first();
+
+        $pass = [
+            "kambing"=>$kambing,
+        ];
+        
+        if(!$kambing){
+            return view('kambing/detail_404', $pass);
+        }
+        
+        return view('kambing/detail_public', $pass);
+    }
+
+    
 
     public function searchForm()
     {
