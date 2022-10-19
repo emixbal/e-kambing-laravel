@@ -35,6 +35,7 @@ Route::group(['prefix' => 'dev', 'middleware' => ['isAdmin']], function(){
 
 Route::group(['prefix' => 'kambings'], function(){
     Route::get('/', [App\Http\Controllers\KambingController::class, 'index'])->name('kambingIndex');
+    Route::get('/search', [App\Http\Controllers\KambingController::class, 'searchForm'])->name('kambingDetail');
     Route::get('/new', [App\Http\Controllers\KambingController::class, 'index'])->name('kambingDetail');
     Route::get('/{id}', [App\Http\Controllers\KambingController::class, 'detail'])->name('kambingDetail');
 });

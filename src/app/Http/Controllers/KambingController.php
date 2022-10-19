@@ -32,4 +32,9 @@ class KambingController extends Controller
         
         return view('kambing/detail', $pass);
     }
+
+    public function searchForm()
+    {
+        return view('kambing/search_form');
+    }
 }
