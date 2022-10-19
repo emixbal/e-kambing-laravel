@@ -22,6 +22,8 @@ class KambingController extends Controller
     {
         $kambing = Kambing::where('number', $id)
         ->orWhere('id', $id)
+        ->with('bloodType')
+        ->with('kambingType')
         ->first();
 
         $pass = [

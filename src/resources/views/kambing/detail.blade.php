@@ -31,6 +31,14 @@
             </tr>
             <tr>
                 <th class="w-25">
+                    Jenis Kambing
+                </th>
+                <td>
+                    {{$kambing->kambingType->name}}
+                </td>
+            </tr>
+            <tr>
+                <th class="w-25">
                     Jenis Kelamin
                 </th>
                 <td>
@@ -42,7 +50,23 @@
                     Tanggal Lahir
                 </th>
                 <td>
-                    {{$kambing->birth_date}}
+                    {{ \Carbon\Carbon::parse($kambing->birth_date)->translatedFormat('d F Y') }}
+                </td>
+            </tr>
+            <tr>
+                <th class="w-25">
+                    Type Darah
+                </th>
+                <td>
+                    {{$kambing->bloodType->name}}
+                </td>
+            </tr>
+            <tr>
+                <th class="w-25">
+                    Keterangan
+                </th>
+                <td>
+                    {{$kambing->description}}
                 </td>
             </tr>
         </tbody>
