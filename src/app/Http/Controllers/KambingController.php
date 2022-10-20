@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kambing;
+use App\Models\Medicine;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class KambingController extends Controller
 {
@@ -26,8 +28,11 @@ class KambingController extends Controller
         ->with('kambingType')
         ->first();
 
+        $medicines = Medicine::where('is_active', TRUE)->get();
+
         $pass = [
             "kambing"=>$kambing,
+            "medicines"=>$medicines,
         ];
         
         if(!$kambing){
@@ -79,6 +84,24 @@ class KambingController extends Controller
         return response()->json([
             "message"=>"ok",
             "isValid"=>TRUE,
+        ]);
+    }
+
+    public function addMedicineSave(Request $request){
+        $validator = Validator::make($request->all(), [
+            'kambingId' => 'required',
+            'medicineId' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect("kambings/$id")
+            ->withErrors($validator)
+            ->withInput();
+        }
+
+        return response()->json([
+            "message"=>"ok",
+            "data"=>(object)[],
         ]);
     }
 

@@ -8,6 +8,16 @@
 
 @section('content')
 
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     <div class="card">
         <div class="card-header">
             Kambing Detail
@@ -18,8 +28,8 @@
                     Pilih Actions
                 </a>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                    <a class="dropdown-item" href="#">Vaksin</a>
-                    <a class="dropdown-item" href="#">Pindah Kandang</a>
+                    <a class="dropdown-item" href="javascript:void(0);" id="modalAddMedecinesBtn">Obat/Vaksin</a>
+                    <a class="dropdown-item" href="javascript:void(0);">Pindah Kandang</a>
                 </div>
             </div>
         </div>
@@ -86,11 +96,49 @@
             </table>
         </div>
         <div class="card-footer">
-            <a class="btn btn-primary">
-                Edit
-            </a>
+
         </div>
 
+    </div>
+
+    <input type="text" value="{{ $kambing->id }}" id="kambingId" hidden />
+
+    <!-- The Modal -->
+    <div class="modal" id="modalAddMedecines">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Pemberian Obat/Vaksin</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="sel1">Pilih Obat/Vaksin:</label>
+                        <select class="form-control" id="medecineOptions">
+                            @foreach ($medicines as $medicine)
+                                <option value="{{ $medicine->id }}">{{ $medicine->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="medecineOk"
+                        data-id={{ $kambing->id }}>
+                        Ok
+                    </button>
+                </div>
+
+            </div>
+        </div>
     </div>
 
 
@@ -102,5 +150,5 @@
 
 @section('js')
     <script src="{{ asset('js/config.js') }}"></script>
-    <script src="{{ asset('js/user/user_detail.js') }}"></script>
+    <script src="{{ asset('js/kambing/kambing_detail.js') }}"></script>
 @stop
