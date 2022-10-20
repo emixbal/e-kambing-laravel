@@ -15,6 +15,9 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
+Route::get('/home', [App\Http\Controllers\DeveloperController::class, 'fetchAnggotas'])->name('devFetchAnggotas');
+
+
 Route::prefix('users')->group(function () {
     Route::get('/', [App\Http\Controllers\UserController::class, 'index'])->name('users')->middleware('isSuperadmin');
     
@@ -38,7 +41,7 @@ Route::group(['prefix' => 'kambings'], function(){
     Route::get('/{id}/public', [App\Http\Controllers\KambingController::class, 'detailPublic'])->name('kambingDetailPublic');
     Route::get('/{id}/check', [App\Http\Controllers\KambingController::class, 'check'])->name('kambingCheck');
     
-    Route::group(['middleware' => ['isAdmin']], function(){
+    Route::group(['middleware' => ['auth']], function(){
         Route::get('/', [App\Http\Controllers\KambingController::class, 'index'])->name('kambingIndex');
         Route::get('/new', [App\Http\Controllers\KambingController::class, 'index'])->name('kambingNew');
         Route::get('/{id}', [App\Http\Controllers\KambingController::class, 'detail'])->name('kambingDetail');
