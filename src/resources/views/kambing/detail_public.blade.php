@@ -30,7 +30,7 @@
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">List Kambing</a>
+                    <a class="nav-link" href="{{route('kambingSearchForm')}}">Cari Kambing</a>
                 </li>
             </ul>
         </div>
