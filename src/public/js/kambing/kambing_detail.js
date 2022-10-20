@@ -17,11 +17,12 @@ $(document).ready(function () {
             },
             type: "POST",
             success: function (response) {
-                if(!response){
+                if(response.message!="ok"){
                     alert("Gagal simpan")
                     return
                 }
                 alert("behasil simpan")
+                window.location.replace(`${base_url}/kambings/${kambingId}`);
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 console.log(textStatus, errorThrown);

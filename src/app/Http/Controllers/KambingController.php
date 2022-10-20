@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Kambing;
 use App\Models\Medicine;
+use App\Models\KambingMedicine;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use DB;
 
 class KambingController extends Controller
 {
@@ -30,9 +32,15 @@ class KambingController extends Controller
 
         $medicines = Medicine::where('is_active', TRUE)->get();
 
+        $medicine_history = KambingMedicine::where('kambing_id', $id)
+        ->with('medicine')
+        ->get();
+
+
         $pass = [
             "kambing"=>$kambing,
             "medicines"=>$medicines,
+            "medicine_history"=>$medicine_history,
         ];
         
         if(!$kambing){
@@ -97,6 +105,18 @@ class KambingController extends Controller
             return redirect("kambings/$id")
             ->withErrors($validator)
             ->withInput();
+        }
+
+        try {
+            DB::table('kambing_medicines')->insert([
+                'kambing_id' => $request->kambingId,
+                'medicine_id' => $request->medicineId,
+            ]);
+        } catch (\Throwable $e) {
+            return response()->json([
+                "message"=>"nok",
+                "data"=>(object)[],
+            ]);
         }
 
         return response()->json([

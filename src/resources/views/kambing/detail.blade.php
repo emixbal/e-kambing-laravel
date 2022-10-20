@@ -103,6 +103,39 @@
 
     <input type="text" value="{{ $kambing->id }}" id="kambingId" hidden />
 
+    <div class="card">
+        <div class="card-header">Riwayat Pemberian Obat/Vaksin</div>
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Waktu Pemberian</th>
+                        <th scope="col">Nama Obat</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (count($medicine_history) > 0)
+                        @foreach ($medicine_history as $mh_data)
+                            <tr>
+                                <td>
+                                    {{ \Carbon\Carbon::parse($mh_data->created_at)->translatedFormat('d F Y - H:i:s') }}
+                                </td>
+                                <td>
+                                    {{ $mh_data->medicine->name }}
+                                </td>
+                            </tr>
+                        @endforeach
+                    @endif
+
+                </tbody>
+            </table>
+
+
+
+        </div>
+    </div>
+
+
     <!-- The Modal -->
     <div class="modal" id="modalAddMedecines">
         <div class="modal-dialog">
