@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\DeveloperController::class, 'fetchAnggotas'])->name('devFetchAnggotas');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('homeController');
 
 
 Route::prefix('users')->group(function () {
