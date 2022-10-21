@@ -30,6 +30,10 @@ class KambingController extends Controller
         ->with('kambingType')
         ->first();
 
+        if(!$kambing){
+            return view('kambing/detail_404', $pass);
+        }
+
         $medicines = Medicine::where('is_active', TRUE)->get();
 
         $medicine_history = KambingMedicine::where('kambing_id', $id)
@@ -42,10 +46,6 @@ class KambingController extends Controller
             "medicines"=>$medicines,
             "medicine_history"=>$medicine_history,
         ];
-        
-        if(!$kambing){
-            return view('kambing/detail_404', $pass);
-        }
         
         return view('kambing/detail', $pass);
     }

@@ -36,6 +36,11 @@ Route::group(['prefix' => 'dev', 'middleware' => ['isAdmin']], function(){
     Route::get('/{take}', [App\Http\Controllers\DeveloperController::class, 'fetchAnggotas'])->name('fetchAnggotas');
 });
 
+Route::group(['prefix' => 'kandangs', 'middleware' => ['auth']], function(){
+    Route::get('/', [App\Http\Controllers\KandangController::class, 'index'])->name('listKandang');
+    Route::get('/{id}', [App\Http\Controllers\KandangController::class, 'detail'])->name('kandangDetail');
+});
+
 Route::group(['prefix' => 'kambings'], function(){
     Route::get('/search', [App\Http\Controllers\KambingController::class, 'searchForm'])->name('kambingSearchForm');
     Route::get('/{id}/public', [App\Http\Controllers\KambingController::class, 'detailPublic'])->name('kambingDetailPublic');

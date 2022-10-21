@@ -258,6 +258,16 @@ return [
             ],
         ],
         [
+            'text'    => 'Kandang',
+            'icon'    => 'fas fa-fw fa-address-book',
+            'submenu' => [
+                [
+                    'text' => 'List Kandang',
+                    'url'  => 'kandangs',
+                ],
+            ],
+        ],
+        [
             'text'        => 'User',
             'icon'        => 'fas fa-users fa-file',
             'submenu' => [
