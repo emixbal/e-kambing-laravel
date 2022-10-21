@@ -3,6 +3,10 @@ $(document).ready(function () {
         $('#modalAddMedecines').modal("show")
     })
 
+    $("#modalPindahKandangBtn").on("click", function () {
+        $('#modalPindahKandang').modal("show")
+    })
+
     $("#medecineOk").on("click", function () {
         var kambingId = $("#kambingId").val()
         var medicineId = $("#medecineOptions").find(":selected").val();
@@ -17,7 +21,7 @@ $(document).ready(function () {
             },
             type: "POST",
             success: function (response) {
-                if(response.message!="ok"){
+                if (response.message != "ok") {
                     alert("Gagal simpan")
                     return
                 }
@@ -29,7 +33,37 @@ $(document).ready(function () {
                 alert("Gagal simpan")
             }
         });
-        
+
+        return;
+    })
+    $("#kandangOk").on("click", function () {
+        var kambingId = $("#kambingId").val()
+        var kandangId = $("#kandangOptions").find(":selected").val()
+
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: `${base_url}/kambings/pindah-kandang`,
+            data: {
+                kambingId, kandangId
+            },
+            type: "POST",
+            success: function (response) {
+                console.log(response);
+                if (response.message != "ok") {
+                    alert("Gagal simpan 1")
+                    return
+                }
+                alert("behasil simpan")
+                window.location.replace(`${base_url}/kambings/${kambingId}`);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log(textStatus, errorThrown);
+                alert("Gagal simpan 2")
+            }
+        });
+
         return;
     })
 })

@@ -52,5 +52,6 @@ Route::group(['prefix' => 'kambings'], function(){
         Route::get('/{id}', [App\Http\Controllers\KambingController::class, 'detail'])->name('kambingDetail');
 
         Route::post('/add-medicine', [App\Http\Controllers\KambingController::class, 'addMedicineSave']);
+        Route::post('/pindah-kandang', [App\Http\Controllers\KambingController::class, 'pindahKandang']);
     });
 });

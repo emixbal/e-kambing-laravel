@@ -29,7 +29,7 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                     <a class="dropdown-item" href="javascript:void(0);" id="modalAddMedecinesBtn">Obat/Vaksin</a>
-                    <a class="dropdown-item" href="javascript:void(0);">Pindah Kandang</a>
+                    <a class="dropdown-item" href="javascript:void(0);" id="modalPindahKandangBtn">Pindah Kandang</a>
                 </div>
             </div>
         </div>
@@ -86,6 +86,14 @@
                     </tr>
                     <tr>
                         <th class="w-25">
+                            Kandang
+                        </th>
+                        <td>
+                            {{ $kambing->kandang->name }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="w-25">
                             Keterangan
                         </th>
                         <td>
@@ -136,7 +144,7 @@
     </div>
 
 
-    <!-- The Modal -->
+    <!-- modalAddMedecines -->
     <div class="modal" id="modalAddMedecines">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -173,6 +181,51 @@
             </div>
         </div>
     </div>
+    {{-- end #modalAddMedecines --}}
+
+    {{-- #modalPindahKandang --}}
+    <div class="modal" id="modalPindahKandang">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Pindahkan Kandang</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="sel1">Pilih Kandang:</label>
+                        <select class="form-control" id="kandangOptions">
+                            @foreach ($kandangs as $kandang)
+                                <option
+                                    value="{{ $kandang->id }}"
+                                    {{($kandang->id==$kambing->kandang->id)?"disabled":""}}
+                                >
+                                    {{ $kandang->name }} {{($kandang->id==$kambing->kandang->id)?"(posisi sekarang)":""}}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="kandangOk"
+                        data-id={{ $kambing->id }}>
+                        Ok
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    {{-- end #modalPindahKandang --}}
 
 
 @stop

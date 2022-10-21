@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Kambing;
 use App\Models\Medicine;
 use App\Models\KambingMedicine;
+use App\Models\Kandang;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use DB;
@@ -35,6 +36,7 @@ class KambingController extends Controller
         }
 
         $medicines = Medicine::where('is_active', TRUE)->get();
+        $kandangs = Kandang::where('is_active', TRUE)->get();
 
         $medicine_history = KambingMedicine::where('kambing_id', $id)
         ->with('medicine')
@@ -44,6 +46,7 @@ class KambingController extends Controller
         $pass = [
             "kambing"=>$kambing,
             "medicines"=>$medicines,
+            "kandangs"=>$kandangs,
             "medicine_history"=>$medicine_history,
         ];
         
@@ -102,9 +105,10 @@ class KambingController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect("kambings/$id")
-            ->withErrors($validator)
-            ->withInput();
+            return response()->json([
+                "message"=>"nok",
+                "data"=>(object)[],
+            ]);
         }
 
         try {
@@ -115,6 +119,40 @@ class KambingController extends Controller
         } catch (\Throwable $e) {
             return response()->json([
                 "message"=>"nok",
+                "data"=>(object)[],
+            ]);
+        }
+
+        return response()->json([
+            "message"=>"ok",
+            "data"=>(object)[],
+        ]);
+    }
+
+    public function pindahKandang(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'kambingId' => 'required',
+            'kandangId' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                "message"=>"nok",
+                "err"=>"kambingId dan kandangId wajib diisi",
+                "data"=>(object)[],
+            ]);
+        }
+
+        $kambing = Kambing::find($request->kambingId);
+        $kambing->kandang_id = $request->kandangId;
+
+        try {
+            $kambing->save();
+        } catch (\Throwable $e) {
+            return response()->json([
+                "message"=>"nok",
+                "err"=>$e,
                 "data"=>(object)[],
             ]);
         }

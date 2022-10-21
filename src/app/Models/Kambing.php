@@ -20,4 +20,10 @@ class Kambing extends Model
         return $this->belongsTo(KambingType::class, "kambing_type_id")
         ->withDefault();
     }
+    
+    public function kandang()
+    {
+        return $this->belongsTo(Kandang::class, "kandang_id")
+        ->withDefault();
+    }
 }
