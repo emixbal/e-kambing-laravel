@@ -259,7 +259,7 @@ return [
         ],
         [
             'text'    => 'Kandang',
-            'icon'    => 'fas fa-fw fa-address-book',
+            'icon'    => 'fas fa-fw fa-house-user',
             'submenu' => [
                 [
                     'text' => 'List Kandang',
