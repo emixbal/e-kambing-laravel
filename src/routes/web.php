@@ -18,6 +18,8 @@ Auth::routes();
 Route::get('/', [App\Http\Controllers\KambingController::class, 'searchForm'])->name('kambingSearchForm');
 
 
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
+
 Route::prefix('users')->group(function () {
     Route::get('/', [App\Http\Controllers\UserController::class, 'index'])->name('users')->middleware('isSuperadmin');
     
