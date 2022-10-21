@@ -34,6 +34,9 @@
                 </li>
             </ul>
         </div>
+        <a href='{{url("/login")}}'' class="btn btn-primary float-right">
+            Login
+        </a>
     </nav>
 
     <div class="container" style="margin-top:30px">
