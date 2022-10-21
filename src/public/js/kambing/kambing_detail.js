@@ -23,6 +23,7 @@ $(document).ready(function () {
             success: function (response) {
                 if (response.message != "ok") {
                     alert("Gagal simpan")
+                    console.log(response);
                     return
                 }
                 alert("behasil simpan")

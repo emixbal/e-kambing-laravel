@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use App\Models\Kambing;
 use App\Models\Medicine;
 use App\Models\KambingMedicine;
@@ -39,7 +40,9 @@ class KambingController extends Controller
         $kandangs = Kandang::where('is_active', TRUE)->get();
 
         $medicine_history = KambingMedicine::where('kambing_id', $id)
+        ->orderBy('created_at', 'desc')
         ->with('medicine')
+        ->with('petugas')
         ->get();
 
 
@@ -115,10 +118,13 @@ class KambingController extends Controller
             DB::table('kambing_medicines')->insert([
                 'kambing_id' => $request->kambingId,
                 'medicine_id' => $request->medicineId,
+                'user_id' => Auth::user()->id,
+                'created_at' => date("Y-m-d H:i:s"),
             ]);
         } catch (\Throwable $e) {
             return response()->json([
                 "message"=>"nok",
+                "err"=>$e,
                 "data"=>(object)[],
             ]);
         }

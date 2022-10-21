@@ -14,4 +14,10 @@ class KambingMedicine extends Model
         return $this->belongsTo(Medicine::class, "medicine_id")
         ->withDefault();
     }
+    
+    public function petugas()
+    {
+        return $this->belongsTo(User::class, "user_id")
+        ->withDefault();
+    }
 }
