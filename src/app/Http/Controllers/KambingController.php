@@ -44,6 +44,9 @@ class KambingController extends Controller
 
         $histrory_view = ($request->input('histrory_view'))?$request->input('histrory_view'):'';
 
+        if(!$histrory_view){
+            $histrory_view="medicine";
+        }
         $medicine_history = [];
         if($histrory_view=="medicine"){
             $medicine_history = KambingMedicine::where('kambing_id', $id)
