@@ -268,6 +268,16 @@ return [
             ],
         ],
         [
+            'text'    => 'Obat/Vitamin',
+            'icon'    => 'fas fa-fw fa-house-user',
+            'submenu' => [
+                [
+                    'text' => 'List Obat',
+                    'url'  => 'medicines',
+                ],
+            ],
+        ],
+        [
             'text'        => 'User',
             'icon'        => 'fas fa-users fa-file',
             'submenu' => [

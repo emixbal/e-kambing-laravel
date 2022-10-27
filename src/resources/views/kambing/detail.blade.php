@@ -111,6 +111,17 @@
 
     <input type="text" value="{{ $kambing->id }}" id="kambingId" hidden />
 
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link active" href="#">Obat/Vacine</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Kandang</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Pakan</a>
+    </ul>
+
     <div class="card">
         <div class="card-header">Riwayat Pemberian Obat/Vaksin</div>
         <div class="card-body">
@@ -141,9 +152,6 @@
 
                 </tbody>
             </table>
-
-
-
         </div>
     </div>
 
@@ -205,11 +213,10 @@
                         <label for="sel1">Pilih Kandang:</label>
                         <select class="form-control" id="kandangOptions">
                             @foreach ($kandangs as $kandang)
-                                <option
-                                    value="{{ $kandang->id }}"
-                                    {{($kandang->id==$kambing->kandang->id)?"disabled":""}}
-                                >
-                                    {{ $kandang->name }} {{($kandang->id==$kambing->kandang->id)?"(posisi sekarang)":""}}
+                                <option value="{{ $kandang->id }}"
+                                    {{ $kandang->id == $kambing->kandang->id ? 'disabled' : '' }}>
+                                    {{ $kandang->name }}
+                                    {{ $kandang->id == $kambing->kandang->id ? '(posisi sekarang)' : '' }}
                                 </option>
                             @endforeach
                         </select>

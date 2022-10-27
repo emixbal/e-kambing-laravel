@@ -57,3 +57,8 @@ Route::group(['prefix' => 'kambings'], function(){
         Route::post('/pindah-kandang', [App\Http\Controllers\KambingController::class, 'pindahKandang']);
     });
 });
+
+Route::group(['prefix' => 'medicines', 'middleware' => ['auth']], function(){
+    Route::get('/', [App\Http\Controllers\MedicineController::class, 'index'])->name('listKandang');
+    Route::get('/{id}', [App\Http\Controllers\MedicineController::class, 'detail'])->name('kandangDetail');
+});
