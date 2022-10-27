@@ -130,6 +130,10 @@
     @if($histrory_view=="kandang")
     @include('kambing.detail_kandangs')
     @endif
+    
+    @if($histrory_view=="pakan")
+    @include('kambing.detail_pakans')
+    @endif
 
 
     <!-- modalAddMedecines -->

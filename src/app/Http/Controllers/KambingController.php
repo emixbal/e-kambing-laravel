@@ -64,6 +64,11 @@ class KambingController extends Controller
             ->with('petugas')
             ->get();
         }
+        
+        $pakan_history = [];
+        if($histrory_view=="pakan"){
+            
+        }
 
         $pass = [
             "base_url"=>URL::current(),
