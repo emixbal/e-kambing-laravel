@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Kandang;
+use App\Models\Medicine;
 use App\Models\Kambing;
 use Auth;
 
@@ -16,11 +16,12 @@ class MedicineController extends Controller
 
     public function index()
     {
-        $medicine = Kandang::orderBy('name')->where('is_active', TRUE)->get();
+        $medicines = Medicine::orderBy('name')->where('is_active', TRUE)->get();
 
         $pass = [
-            "medicine"=>$medicine
+            "medicines"=>$medicines
         ];
+        
         return view('medicine/index', $pass);
     }
 }
