@@ -172,8 +172,14 @@ class KambingController extends Controller
         $kambing = Kambing::find($request->kambingId);
         $kambing->kandang_id = $request->kandangId;
 
+        $kkh = new KambingKandangHistory;
+        $kkh->kambing_id = $request->kambingId;
+        $kkh->kandang_id = $request->kandangId;
+        $kkh->user_id = Auth::user()->id;
+
         try {
             $kambing->save();
+            $kkh->save();
         } catch (\Throwable $e) {
             return response()->json([
                 "message"=>"nok",

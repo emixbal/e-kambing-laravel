@@ -14,4 +14,10 @@ class KambingKandangHistory extends Model
         return $this->belongsTo(Kandang::class, "kandang_id")
         ->withDefault();
     }
+
+    public function petugas()
+    {
+        return $this->belongsTo(User::class, "user_id")
+        ->withDefault();
+    }
 }
