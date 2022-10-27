@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use \URL;
 use App\Models\Kambing;
 use App\Models\Medicine;
 use App\Models\KambingMedicine;
+use App\Models\KambingKandangHistory;
 use App\Models\Kandang;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -24,7 +26,7 @@ class KambingController extends Controller
         return view('kambing/index', $pass);
     }
 
-    public function detail($id)
+    public function detail(Request $request, $id)
     {
         $kambing = Kambing::where('number', $id)
         ->orWhere('id', $id)
@@ -32,25 +34,42 @@ class KambingController extends Controller
         ->with('kambingType')
         ->first();
 
-        if(!$kambing){
+        if(!$kambing)
+        {
             return view('kambing/detail_404', $pass);
         }
 
         $medicines = Medicine::where('is_active', TRUE)->get();
         $kandangs = Kandang::where('is_active', TRUE)->get();
 
-        $medicine_history = KambingMedicine::where('kambing_id', $id)
-        ->orderBy('created_at', 'desc')
-        ->with('medicine')
-        ->with('petugas')
-        ->get();
+        $histrory_view = ($request->input('histrory_view'))?$request->input('histrory_view'):'';
 
+        $medicine_history = [];
+        if($histrory_view=="medicine"){
+            $medicine_history = KambingMedicine::where('kambing_id', $id)
+            ->orderBy('created_at', 'desc')
+            ->with('medicine')
+            ->with('petugas')
+            ->get();
+        }
+        
+        $kandang_history = [];
+        if($histrory_view=="kandang"){
+            $kandang_history = KambingKandangHistory::where('kambing_id', $id)
+            ->orderBy('created_at', 'desc')
+            ->with('kandang')
+            ->with('petugas')
+            ->get();
+        }
 
         $pass = [
+            "base_url"=>URL::current(),
+            "histrory_view"=>$histrory_view,
             "kambing"=>$kambing,
             "medicines"=>$medicines,
             "kandangs"=>$kandangs,
             "medicine_history"=>$medicine_history,
+            "kandang_history"=>$kandang_history,
         ];
         
         return view('kambing/detail', $pass);

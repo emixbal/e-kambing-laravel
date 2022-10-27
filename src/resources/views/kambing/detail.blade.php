@@ -113,47 +113,23 @@
 
     <ul class="nav nav-tabs">
         <li class="nav-item">
-            <a class="nav-link active" href="#">Obat/Vacine</a>
+            <a class="nav-link {{($histrory_view=="medicine")?"active":""}}" href="{{$base_url.'?histrory_view=medicine'}}">Obat/Vacine</a>
+        </li>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">Kandang</a>
+            <a class="nav-link {{($histrory_view=="kandang")?"active":""}}" href="{{$base_url.'?histrory_view=kandang'}}">Kandang</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">Pakan</a>
+            <a class="nav-link {{($histrory_view=="pakan")?"active":""}}" href="{{$base_url.'?histrory_view=pakan'}}">Pakan</a>
     </ul>
 
-    <div class="card">
-        <div class="card-header">Riwayat Pemberian Obat/Vaksin</div>
-        <div class="card-body">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">Waktu Pemberian</th>
-                        <th scope="col">Nama Obat</th>
-                        <th scope="col">Petugas</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @if (count($medicine_history) > 0)
-                        @foreach ($medicine_history as $mh_data)
-                            <tr>
-                                <td>
-                                    {{ \Carbon\Carbon::parse($mh_data->created_at)->translatedFormat('d F Y - H:i:s') }}
-                                </td>
-                                <td>
-                                    {{ $mh_data->medicine->name }}
-                                </td>
-                                <td>
-                                    {{ $mh_data->petugas->name }}
-                                </td>
-                            </tr>
-                        @endforeach
-                    @endif
+    @if($histrory_view=="medicine")
+    @include('kambing.detail_medicines')
+    @endif
 
-                </tbody>
-            </table>
-        </div>
-    </div>
+    @if($histrory_view=="kandang")
+    @include('kambing.detail_kandangs')
+    @endif
 
 
     <!-- modalAddMedecines -->
