@@ -23,7 +23,7 @@ $(document).ready(function () {
             },
             url: `${base_url}/kambings/add-medicine`,
             data: {
-                kambingId, medicineId
+                kambingId, medicineId, medicineDosing
             },
             type: "POST",
             success: function (response) {
@@ -45,7 +45,8 @@ $(document).ready(function () {
     })
 
     $("#massMediciningBtnNo").on("click", function () {
-        window.location.replace(`${base_url}/kambings/${kambingId}?histrory_view=medicine`);
+        var kambingId = $("#kambingId").val()
+        window.location.replace(`${base_url}/kambings/${kambingId}`);
     })
     
     $("#massMediciningBtnOk").on("click", function () {

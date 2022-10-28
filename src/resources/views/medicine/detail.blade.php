@@ -71,6 +71,7 @@
     </div>
 
     <input type="text" value="{{ $medicine->id }}" id="medicineId" hidden />
+    <input type="text" id="kambingId" hidden />
 
     <label for="email">Tambah data pemakaian obat/vaksin Ke kambing?</label>
     <div class="input-group mb-3">
@@ -83,7 +84,7 @@
     </div>
 
     {{-- #modalKambingDetail --}}
-    <div class="modal fade" id="modalKambingDetail">
+    <div class="modal fade" id="modalKambingDetail" data-backdrop="static">
         <div class="modal-dialog modal-md">
             <div class="modal-content">
 
@@ -116,6 +117,9 @@
                             </tr>
                         </tbody>
                     </table>
+                    <div class="form-group">
+                        <input type="number" class="form-control" id="medicineDosing" placeholder="Masukkan jumlah dosis">
+                    </div>
                 </div>
                 <!-- end Modal body -->
 
