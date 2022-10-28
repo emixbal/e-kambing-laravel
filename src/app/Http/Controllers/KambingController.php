@@ -119,12 +119,14 @@ class KambingController extends Controller
             return response()->json([
                 "message"=>"not found",
                 "isValid"=>FALSE,
+                "data"=>(object)[]
             ]);
         }
         
         return response()->json([
             "message"=>"ok",
             "isValid"=>TRUE,
+            "data"=>$kambing,
         ]);
     }
 

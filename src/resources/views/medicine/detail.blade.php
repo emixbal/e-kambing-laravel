@@ -82,6 +82,58 @@
         </div>
     </div>
 
+    {{-- #modalKambingDetail --}}
+    <div class="modal fade" id="modalKambingDetail">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <p class="modal-title font-weight-bold">Tambah Pemberian {{ $medicine->name }} Ke Hewan Berikut?</p>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+
+                <div class="modal-body">
+                    <table class="table table-striped">
+                        <tbody>
+                            <tr>
+                                <th class="w-25">
+                                    Number
+                                </th>
+                                <td>
+                                    <span id="kambingNumberHtml"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="w-25">
+                                    Nama
+                                </th>
+                                <td>
+                                    <span id="kambingNameHtml"></span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- end Modal body -->
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal" id="massMediciningBtnNo">
+                        Tidak
+                    </button>
+                    <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal" id="massMediciningBtnOk">
+                        Ya, lanjutkan
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    {{-- end #modalKambingDetail --}}
+
 
 @stop
 
