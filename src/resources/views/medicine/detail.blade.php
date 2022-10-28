@@ -126,7 +126,7 @@
                 <!-- Modal footer -->
                 <div class="modal-footer">
                     <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal" id="massMediciningBtnNo">
-                        Tidak
+                        Cancel
                     </button>
                     <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal" id="massMediciningBtnOk">
                         Ya, lanjutkan
