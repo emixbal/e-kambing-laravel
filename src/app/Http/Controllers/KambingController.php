@@ -132,6 +132,7 @@ class KambingController extends Controller
         $validator = Validator::make($request->all(), [
             'kambingId' => 'required',
             'medicineId' => 'required',
+            // 'medicineDosing' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -145,6 +146,7 @@ class KambingController extends Controller
             DB::table('kambing_medicines')->insert([
                 'kambing_id' => $request->kambingId,
                 'medicine_id' => $request->medicineId,
+                // 'medicine_id' => $request->medicineDosing,
                 'user_id' => Auth::user()->id,
                 'created_at' => date("Y-m-d H:i:s"),
             ]);

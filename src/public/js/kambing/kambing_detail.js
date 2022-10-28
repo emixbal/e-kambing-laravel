@@ -10,6 +10,12 @@ $(document).ready(function () {
     $("#medecineOk").on("click", function () {
         var kambingId = $("#kambingId").val()
         var medicineId = $("#medecineOptions").find(":selected").val();
+        var medicineDosing = $("#medicineDosing").val()
+
+        if (!medicineDosing) {
+            alert("Masukkan jumlah dosis yang diberikan terlebih dahulu")
+            return
+        }
 
         $.ajax({
             headers: {
@@ -26,8 +32,8 @@ $(document).ready(function () {
                     console.log(response);
                     return
                 }
-                alert("behasil simpan")
-                window.location.replace(`${base_url}/kambings/${kambingId}`);
+                $("#medicineIdSaved").val(medicineId)
+                $('#modalAddMedecinesSuccess').modal("show")
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 console.log(textStatus, errorThrown);
@@ -37,6 +43,16 @@ $(document).ready(function () {
 
         return;
     })
+
+    $("#massMediciningBtnNo").on("click", function () {
+        window.location.replace(`${base_url}/kambings/${kambingId}?histrory_view=medicine`);
+    })
+    
+    $("#massMediciningBtnOk").on("click", function () {
+        var medicineId = $("#medicineIdSaved").val()
+        window.location.replace(`${base_url}/medicines/${medicineId}`);
+    })
+
     $("#kandangOk").on("click", function () {
         var kambingId = $("#kambingId").val()
         var kandangId = $("#kandangOptions").find(":selected").val()
@@ -57,7 +73,7 @@ $(document).ready(function () {
                     return
                 }
                 alert("behasil simpan")
-                window.location.replace(`${base_url}/kambings/${kambingId}`);
+                window.location.replace(`${base_url}/kambings/${kambingId}?histrory_view=kandang`);
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 console.log(textStatus, errorThrown);

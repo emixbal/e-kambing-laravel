@@ -68,13 +68,19 @@
                 </tbody>
             </table>
         </div>
-        <div class="card-footer">
-
-        </div>
-
     </div>
 
     <input type="text" value="{{ $medicine->id }}" id="medicineId" hidden />
+
+    <label for="email">Tambah data pemakaian obat/vaksin Ke kambing?</label>
+    <div class="input-group mb-3">
+        <input type="text" class="form-control col-sm-4" placeholder="Enter nomer kambing" id="kambingNumber" />
+        <div class="input-group-append">
+            <button class="btn btn-success" type="button" id="searchBtn">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+    </div>
 
 
 @stop
