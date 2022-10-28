@@ -24,4 +24,21 @@ class MedicineController extends Controller
         
         return view('medicine/index', $pass);
     }
+
+    public function detail($id)
+    {
+        $medicine = Medicine::find($id)
+        ->first();
+
+        if(!$medicine){
+            return view('medicine/detail_404');
+        }
+
+        $pass = [
+            "medicine"=>$medicine,
+        ];
+
+        return view('medicine/detail', $pass);
+        
+    }
 }

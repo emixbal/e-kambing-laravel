@@ -269,7 +269,7 @@ return [
         ],
         [
             'text'    => 'Obat/Vitamin',
-            'icon'    => 'fas fa-fw fa-house-user',
+            'icon'    => 'fas fa-solid fa-syringe',
             'submenu' => [
                 [
                     'text' => 'List Obat',
