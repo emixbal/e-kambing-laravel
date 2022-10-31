@@ -27,9 +27,9 @@ return new class extends Migration
             $table->foreign('kambing_type_id')->references('id')->on('kambing_types');
             $table->unsignedBigInteger('blood_type_id');
             $table->foreign('blood_type_id')->references('id')->on('blood_types');
-            $table->unsignedBigInteger('induk_jantan_id');
+            $table->bigInteger('induk_jantan_id')->unsigned()->nullable();
             $table->foreign('induk_jantan_id')->references('id')->on('kambings');
-            $table->unsignedBigInteger('induk_betina_id');
+            $table->bigInteger('induk_betina_id')->unsigned()->nullable();
             $table->foreign('induk_betina_id')->references('id')->on('kambings');
             $table->text('description');
             $table->timestamps();
