@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('number')->unique();
-            $table->boolean('is_active');
+            $table->boolean('is_active')->default(true);
             $table->date('birth_date');
             $table->string('image');
             $table->string('sex');

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('number')->unique();
-            $table->boolean('is_active');
+            $table->boolean('is_active')->default(true);
             $table->text('description');
             $table->timestamps();
             $table->softDeletes($column = 'deleted_at', $precision = 0);

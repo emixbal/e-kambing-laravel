@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('dosing_times');
             $table->integer('dosing_interval');
             $table->text('description');
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
             $table->softDeletes($column = 'deleted_at', $precision = 0);
         });

@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('blood_types', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
-            $table->boolean('is_active');
+            $table->boolean('is_active')->default(true);
             $table->text('description');
             $table->timestamps();
             $table->softDeletes($column = 'deleted_at', $precision = 0);
