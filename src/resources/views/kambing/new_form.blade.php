@@ -117,8 +117,8 @@
                 <label for="sel1">Induk Jantan</label>
                 <select class="form-control" id="induk_jantan_id" name="induk_jantan_id">
                     <option value="">Pilih Induk Jantan</option>
-                    @foreach($kambings as $kambing)
-                    <option value="{{$kambing->id}}" {{ (old('induk_jantan_id')==$kambing->id)?"selected":"" }}>{{$kambing->name}}</option>
+                    @foreach($male_kambings as $male_kambing)
+                    <option value="{{$male_kambing->id}}" {{ (old('induk_jantan_id')==$male_kambing->id)?"selected":"" }}>{{$male_kambing->number}} - {{$male_kambing->name}}</option>
                     @endforeach
                 </select>
             </div>
@@ -127,8 +127,8 @@
                 <label for="sel1">Induk Betina</label>
                 <select class="form-control" id="induk_betina_id" name="induk_betina_id">
                     <option value="">Pilih Induk Betina</option>
-                    @foreach($kambings as $kambing)
-                    <option value="{{$kambing->id}}" {{ (old('induk_betina_id')==$kambing->id)?"selected":"" }}>{{$kambing->name}}</option>
+                    @foreach($female_kambings as $female_kambing)
+                    <option value="{{$female_kambing->id}}" {{ (old('induk_betina_id')==$female_kambing->id)?"selected":"" }}>{{$female_kambing->number}} - {{$female_kambing->name}}</option>
                     @endforeach
                 </select>
             </div>

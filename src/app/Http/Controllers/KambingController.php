@@ -33,13 +33,15 @@ class KambingController extends Controller
         $kandangs = Kandang::all()->where("is_active", 1);
         $kambing_types = KambingType::all()->where("is_active", 1);
         $blood_types = BloodType::all()->where("is_active", 1);
-        $kambings = Kambing::all()->where("is_active", 1);
+        $male_kambings = Kambing::all()->where("is_active", 1)->where("sex", "male");
+        $female_kambings = Kambing::all()->where("is_active", 1)->where("sex", "female");
 
         $pass = [
             "kandangs"=>$kandangs,
             "kambing_types"=>$kambing_types,
             "blood_types"=>$blood_types,
-            "kambings"=>$kambings,
+            "male_kambings"=>$male_kambings,
+            "female_kambings"=>$female_kambings,
         ];
 
         return view('kambing/new_form', $pass);
