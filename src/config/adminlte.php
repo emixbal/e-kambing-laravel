@@ -278,6 +278,20 @@ return [
             ],
         ],
         [
+            'text'    => 'Pengawinan',
+            'icon'    => 'fas fa-solid fa-heart',
+            'submenu' => [
+                [
+                    'text' => 'Tambah Pengawinan',
+                    'url'  => 'breedings/new',
+                ],
+                [
+                    'text' => 'List Pengawinan',
+                    'url'  => 'breedings',
+                ],
+            ],
+        ],
+        [
             'text'        => 'User',
             'icon'        => 'fas fa-users fa-file',
             'submenu' => [
