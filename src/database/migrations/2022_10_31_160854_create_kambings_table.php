@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('number')->unique();
             $table->boolean('is_active')->default(true);
             $table->date('birth_date');
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->string('sex');
             $table->unsignedBigInteger('kandang_id');
             $table->foreign('kandang_id')->references('id')->on('kandangs');

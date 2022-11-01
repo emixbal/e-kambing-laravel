@@ -49,7 +49,8 @@ Route::group(['prefix' => 'kambings'], function(){
     
     Route::group(['middleware' => ['auth']], function(){
         Route::get('/', [App\Http\Controllers\KambingController::class, 'index'])->name('kambingIndex');
-        Route::get('/new', [App\Http\Controllers\KambingController::class, 'index'])->name('kambingNew');
+        Route::get('/new', [App\Http\Controllers\KambingController::class, 'create'])->name('kambingNew');
+        Route::post('/store', [App\Http\Controllers\KambingController::class, 'store'])->name('kambingStore');
         Route::get('/{id}', [App\Http\Controllers\KambingController::class, 'detail'])->name('kambingDetail');
 
         Route::post('/add-medicine', [App\Http\Controllers\KambingController::class, 'addMedicineSave']);
@@ -64,6 +65,6 @@ Route::group(['prefix' => 'medicines', 'middleware' => ['auth']], function(){
 
 Route::group(['prefix' => 'breedings', 'middleware' => ['auth']], function(){
     Route::get('/', [App\Http\Controllers\BreedingController::class, 'index'])->name('breedings');
-    Route::get('/new', [App\Http\Controllers\BreedingController::class, 'create'])->name('new_breedings');
-    Route::get('/{id}', [App\Http\Controllers\BreedingController::class, 'detail'])->name('breedings_detail');
+    Route::get('/new', [App\Http\Controllers\BreedingController::class, 'create'])->name('breedingsNew');
+    Route::get('/{id}', [App\Http\Controllers\BreedingController::class, 'detail'])->name('breedingsDetail');
 });
