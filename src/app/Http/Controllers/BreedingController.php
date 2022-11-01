@@ -8,32 +8,16 @@ use App\Models\Breeding;
 
 class BreedingController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        return view('breeding/index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('breeding/new_form');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreBreedingRequest  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(StoreBreedingRequest $request)
     {
         //

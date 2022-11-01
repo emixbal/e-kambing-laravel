@@ -17,7 +17,6 @@ Auth::routes();
 
 Route::get('/', [App\Http\Controllers\KambingController::class, 'searchForm'])->name('kambingSearchForm');
 
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
 
 Route::prefix('users')->group(function () {
@@ -61,4 +60,10 @@ Route::group(['prefix' => 'kambings'], function(){
 Route::group(['prefix' => 'medicines', 'middleware' => ['auth']], function(){
     Route::get('/', [App\Http\Controllers\MedicineController::class, 'index'])->name('listKandang');
     Route::get('/{id}', [App\Http\Controllers\MedicineController::class, 'detail'])->name('medicineDetail');
+});
+
+Route::group(['prefix' => 'breedings', 'middleware' => ['auth']], function(){
+    Route::get('/', [App\Http\Controllers\BreedingController::class, 'index'])->name('breedings');
+    Route::get('/new', [App\Http\Controllers\BreedingController::class, 'create'])->name('new_breedings');
+    Route::get('/{id}', [App\Http\Controllers\BreedingController::class, 'detail'])->name('breedings_detail');
 });
