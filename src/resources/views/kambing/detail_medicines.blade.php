@@ -6,6 +6,7 @@
                 <tr>
                     <th scope="col">Waktu Pemberian</th>
                     <th scope="col">Nama Obat</th>
+                    <th scope="col">Dosis</th>
                     <th scope="col">Petugas</th>
                 </tr>
             </thead>
@@ -18,6 +19,9 @@
                             </td>
                             <td>
                                 {{ $mh_data->medicine->name }}
+                            </td>
+                            <td>
+                                {{ $mh_data->medicine->dosing }}
                             </td>
                             <td>
                                 {{ $mh_data->petugas->name }}
