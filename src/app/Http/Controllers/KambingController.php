@@ -234,21 +234,47 @@ class KambingController extends Controller
             ]);
         }
 
+        $now = date("Y-m-d H:i:s");
+
+        DB::beginTransaction();
+
         try {
-            DB::table('kambing_medicines')->insert([
+            $id = DB::table('kambing_medicines')->insertGetId([
                 'kambing_id' => $request->kambingId,
                 'medicine_id' => $request->medicineId,
                 'dosing' => $request->medicineDosing,
                 'user_id' => Auth::user()->id,
-                'created_at' => date("Y-m-d H:i:s"),
+                'created_at' => $now,
+                'updated_at' => $now,
             ]);
+
+            if($id){
+                $action_name = config('app.action_types.kambing_medicines.name');
+                $action_table = config('app.action_types.kambing_medicines.table');
+
+                DB::table('user_audit_trails_tabel')->insert([
+                    'user_id' => Auth::user()->id,
+                    'action_name' => $action_name,
+                    'action_table' => $action_table,
+                    'action_detail_id' => $id,
+                    'data'=>json_encode([
+                        "kambing_id"=>$request->kambingId,
+                        "medicine_id"=>$request->medicineId,
+                    ]),
+                    'created_at' => $now,
+                    'updated_at' => $now,
+                ]);
+            }
         } catch (\Throwable $e) {
+            DB::rollBack();
             return response()->json([
                 "message"=>"nok",
                 "err"=>$e,
                 "data"=>(object)[],
             ]);
         }
+
+        DB::commit();
 
         return response()->json([
             "message"=>"ok",

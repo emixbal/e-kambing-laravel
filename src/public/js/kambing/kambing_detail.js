@@ -32,6 +32,7 @@ $(document).ready(function () {
                     console.log(response);
                     return
                 }
+                console.log(response);
                 $("#medicineIdSaved").val(medicineId)
                 $('#modalAddMedecinesSuccess').modal("show")
             },

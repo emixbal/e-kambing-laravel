@@ -214,4 +214,27 @@ return [
         'PDF' => Barryvdh\DomPDF\Facade::class,
     ])->toArray(),
 
+    'action_types' => [
+        "new_kambing"=>[
+            "name"=>"new_kambing",
+            "table"=>"kambings",
+        ],
+        "update_kambing"=>[
+            "name"=>"update_kambing",
+            "table"=>"kambings",
+        ],
+        "kambing_feedings"=>[
+            "name"=>"kambing_feedings",
+            "table"=>"kambing_feedings",
+        ],
+        "kambing_medicines"=>[
+            "name"=>"kambing_medicines",
+            "table"=>"kambing_medicines",
+        ],
+        "kambing_move_kandang"=>[
+            "name"=>"kambing_move_kandang",
+            "table"=>"kambing_kandang_histories",
+        ],
+    ]
+
 ];
