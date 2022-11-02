@@ -262,7 +262,6 @@ class KambingController extends Controller
                         "medicine_id"=>$request->medicineId,
                     ]),
                     'created_at' => $now,
-                    'updated_at' => $now,
                 ]);
             }
         } catch (\Throwable $e) {
@@ -297,24 +296,50 @@ class KambingController extends Controller
             ]);
         }
 
+        DB::beginTransaction();
+
+        $now = date('Y-m-d H:i:s');
         $kambing = Kambing::find($request->kambingId);
         $kambing->kandang_id = $request->kandangId;
+        $kambing->updated_at = $now;
 
         $kkh = new KambingKandangHistory;
         $kkh->kambing_id = $request->kambingId;
         $kkh->kandang_id = $request->kandangId;
         $kkh->user_id = Auth::user()->id;
+        $kkh->created_at = $now;
+        $kkh->updated_at = $now;
 
         try {
             $kambing->save();
             $kkh->save();
+
+            $action_name = config('app.action_types.kambing_move_kandang.name');
+            $action_table = config('app.action_types.kambing_move_kandang.table');
+
+            if($kkh->id){
+                DB::table('user_audit_trails_tabel')->insert([
+                    'user_id' => Auth::user()->id,
+                    'action_name' => $action_name,
+                    'action_table' => $action_table,
+                    'action_detail_id' => $kkh->id,
+                    'data'=>json_encode([
+                        "kambing_id"=>$request->kambingId,
+                        "kandang_id"=>$request->kandangId,
+                    ]),
+                    'created_at' => $now,
+                ]);
+            }
         } catch (\Throwable $e) {
+            DB::rollBack();
             return response()->json([
                 "message"=>"nok",
                 "err"=>$e,
                 "data"=>(object)[],
             ]);
         }
+
+        DB::commit();
 
         return response()->json([
             "message"=>"ok",
