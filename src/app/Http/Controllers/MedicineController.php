@@ -27,12 +27,12 @@ class MedicineController extends Controller
 
     public function detail($id)
     {
-        $medicine = Medicine::find($id)
-        ->first();
+        $medicine = Medicine::find($id);
 
         if(!$medicine){
             return view('medicine/detail_404');
         }
+
 
         $pass = [
             "medicine"=>$medicine,
