@@ -158,7 +158,7 @@
                         <label for="sel1">Pilih Obat/Vaksin:</label>
                         <select class="form-control" id="medecineOptions">
                             @foreach ($medicines as $medicine)
-                                <option value="{{ $medicine->id }}">{{ $medicine->name }}</option>
+                                <option value="{{ $medicine->id }}">{{ $medicine->name }} - dosis normal: {{ $medicine->dosing }}</option>
                             @endforeach
                         </select>
                     </div>
