@@ -92,6 +92,8 @@ class KambingController extends Controller
             ->withInput();
         }
 
+        DB::beginTransaction();
+
         $kambing = new Kambing;
 
         $kambing->name = $request->name;
@@ -108,11 +110,31 @@ class KambingController extends Controller
 
         try {
             $kambing->save();
+
+            if($kambing->id){
+                $action_name = config('app.action_types.new_kambing.name');
+                $action_table = config('app.action_types.new_kambing.table');
+    
+                DB::table('user_audit_trails_tabel')->insert([
+                    'user_id' => Auth::user()->id,
+                    'action_name' => $action_name,
+                    'action_table' => $action_table,
+                    'action_detail_id' => $$kambing->id,
+                    'data'=>json_encode([]),
+                    'created_at' => $now,
+                ]);
+            }
+            
         } catch (\Throwable $e) {
+            DB::rollBack();
+            
             return redirect('kambings/new')
             ->withErrors("Terjadi kesalahan")
             ->withInput();
         }
+
+        DB::commit();
+        
         return redirect('kambings');
     }
 
