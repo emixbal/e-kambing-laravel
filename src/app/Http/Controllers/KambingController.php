@@ -119,7 +119,7 @@ class KambingController extends Controller
                     'user_id' => Auth::user()->id,
                     'action_name' => $action_name,
                     'action_table' => $action_table,
-                    'action_detail_id' => $$kambing->id,
+                    'action_detail_id' => $kambing->id,
                     'data'=>json_encode([]),
                     'created_at' => $now,
                 ]);
@@ -127,7 +127,7 @@ class KambingController extends Controller
             
         } catch (\Throwable $e) {
             DB::rollBack();
-            
+
             return redirect('kambings/new')
             ->withErrors("Terjadi kesalahan")
             ->withInput();
